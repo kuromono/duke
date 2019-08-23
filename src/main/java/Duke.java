@@ -28,5 +28,8 @@ public class Duke {
         // OUTRO TEXT
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);
+
+        // CLOSE SCANNER
+        read_line.close();
     }
 }
