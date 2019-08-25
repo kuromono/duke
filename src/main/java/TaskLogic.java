@@ -35,28 +35,17 @@ public class TaskLogic {
         System.out.println(LINE);
     }
 
-    public static Task make_todo(String desc) {
-        Task t = new ToDo(desc);
+    public static Task make_task(String type, String desc, String date)
+    {
+        Task t;
 
-        System.out.println(LINE);
-        System.out.println(" Got it. I've added this task: ");
-        System.out.println("   " + t.toString());
-
-        return t;
-    }
-
-    public static Task make_deadline(String desc, String date) {
-        Task t = new Deadline(desc, date);
-
-        System.out.println(LINE);
-        System.out.println(" Got it. I've added this task: ");
-        System.out.println("   " + t.toString());
-
-        return t;
-    }
-
-    public static Task make_event(String desc, String date) {
-        Task t = new Event(desc, date);
+        if (type.equals("event")) {
+            t = new Event(desc, date);
+        } else if (type.equals("deadline")) {
+            t = new Deadline(desc, date);
+        } else {
+            t = new ToDo(desc);
+        }
 
         System.out.println(LINE);
         System.out.println(" Got it. I've added this task: ");

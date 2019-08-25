@@ -39,13 +39,13 @@ public class Duke {
             } else {
                 // Adds new Tasks
                 if (tokenized_input[0].equals("todo")) {
-                    TaskLogic.add_task(task_list, TaskLogic.make_todo(input.substring(5)));
+                    TaskLogic.add_task(task_list, TaskLogic.make_task("todo", input.substring(5), ""));
                 } else if (tokenized_input[0].equals("deadline")) {
                     tokenized_input = input.substring(9).split(" /by ");
-                    TaskLogic.add_task(task_list, TaskLogic.make_deadline(tokenized_input[0], tokenized_input[1]));
+                    TaskLogic.add_task(task_list, TaskLogic.make_task("deadline", tokenized_input[0], tokenized_input[1]));
                 } else if (tokenized_input[0].equals("event")) {
                     tokenized_input = input.substring(6).split(" /at ");
-                    TaskLogic.add_task(task_list, TaskLogic.make_event(tokenized_input[0], tokenized_input[1]));
+                    TaskLogic.add_task(task_list, TaskLogic.make_task("event", tokenized_input[0], tokenized_input[1]));
                 } else {
                     TaskLogic.error_task();
                 }
