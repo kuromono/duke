@@ -1,3 +1,5 @@
+package program;
+
 import task.*;
 
 import java.util.ArrayList;
@@ -18,10 +20,11 @@ public class TaskLogic {
         }
     }
 
-    public static void done(ArrayList<Task> task_list, int index) {
-        if (index > 0 && index <= task_list.size()) { // Set task list boundary
-            task_list.get(index - 1).setDone();
-        }
+    public static void done(ArrayList<Task> task_list, int index) throws DukeException {
+        if (index < 0 || index > task_list.size()) // Set task list boundary
+            throw new DukeException("Value is out of bounds.");
+
+        task_list.get(index - 1).setDone();
         System.out.println(LINE);
         System.out.println(" Nice! I've marked this task as done:");
         System.out.println("  " + task_list.get(index - 1).toString());
