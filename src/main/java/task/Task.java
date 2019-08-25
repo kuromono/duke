@@ -1,3 +1,5 @@
+package task;
+
 public class Task
 {
     protected String description;
@@ -8,8 +10,19 @@ public class Task
         this.isDone = false;
     }
 
+    public void setDone()
+    {
+        this.isDone = true;
+    }
+
     public String getStatusIcon()
     {
         return (isDone ? "[\u2713]" : "[\u2718]"); //return tick or X symbols
+    }
+
+    @Override
+    public String toString()
+    {
+        return getStatusIcon() + " " + description;
     }
 }

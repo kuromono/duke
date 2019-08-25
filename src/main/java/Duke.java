@@ -1,28 +1,23 @@
+import task.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
+    public static final String LINE = "____________________________________________________________";
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        // Print intro text
+        printIntro();
 
-        String line = "____________________________________________________________";
-
-        // INTRO TEXT
-        System.out.println(line);
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
-        System.out.println(line);
-
-        ArrayList<Task> task_list = new ArrayList<Task>();
+        /*
+        ArrayList<task.Task> task_list = new ArrayList<task.Task>();
 
         // INPUT LOOP
         Scanner read_line = new Scanner(System.in);
         String input = "";
-        while(!input.equals("bye"))
+        while (!input.equals("bye"))
         {
             // read input & tokenize
             input = read_line.nextLine();
@@ -32,10 +27,10 @@ public class Duke {
             {
                 if (task_list.size() != 0) // Set task list boundary
                 {
-                    for(int i = 0; i < task_list.size(); i += 1)
+                    for (int i = 0; i < task_list.size(); i += 1)
                     {
-                        Task t = task_list.get(i);
-                        System.out.println((i + 1) + "." + t.getStatusIcon() + " " + t.description);
+                        task.Task t = task_list.get(i);
+                        System.out.println((i + 1) + "." + t.toString());
                     }
                 }
                 else
@@ -43,7 +38,7 @@ public class Duke {
                     System.out.println(line + "\nThere is nothing in the list!\n" + line);
                 }
             }
-            else if(tokenized_input[0].equals("done")) // Mark Tasks as Done
+            else if (tokenized_input[0].equals("done")) // Mark Tasks as Done
             {
                 int input_num = Integer.parseInt(tokenized_input[1]);
                 if (input_num > 0 && input_num <= task_list.size()) // Set task list boundary
@@ -56,19 +51,110 @@ public class Duke {
             }
             else // Add new tasks
             {
-                Task t = new Task(input);
-                task_list.add(t);
-                System.out.println(line + "\nadded: " + input + "\n" + line);
+                if (input.equals("todo"))
+                {
+                    task.Task t = new task.ToDo(input);
+                    task_list.add(t);
+                }
+                else if (input.equals("deadline"))
+                {
+                    task.Task t = new task.Deadline(input, "placeholder");
+                    task_list.add(t);
+                }
+                else if (input.equals("event"))
+                {
+                    task.Task t = new task.Event(input, "placeholder");
+                    task_list.add(t);
+                }
+                else
+                {
+                    task.Task t = new task.Task(input);
+                    task_list.add(t);
+                    System.out.println(line + "\nadded: " + input + "\n" + line);
+                }
             }
 
         }
 
+         */
+
+        // main logic
+        input_parser();
+
+        // Print outro text & exits
+        exitDuke();
+    }
+
+    public static void input_parser()
+    {
+        ArrayList<Task> task_list = new ArrayList<Task>();
+
+        // INPUT LOOP
+        Scanner read_line = new Scanner(System.in);
+        String input = "";
+        while (!input.equals("bye"))
+        {
+            // read input & tokenize
+            input = read_line.nextLine();
+            String[] tokenized_input = input.split(" ");
+
+            if (input.equals("list")) // Lists Everything
+            {
+                TaskLogic.list(task_list);
+            }
+            else if (tokenized_input[0].equals("done")) // Mark Tasks as Done
+            {
+                TaskLogic.done(task_list, Integer.parseInt(tokenized_input[1]));
+            }
+            else // Add new tasks
+            {
+                if (input.equals("todo"))
+                {
+                    Task t = new ToDo(input);
+                    task_list.add(t);
+                }
+                else if (input.equals("deadline"))
+                {
+                    Task t = new Deadline(input, "placeholder");
+                    task_list.add(t);
+                }
+                else if (input.equals("event"))
+                {
+                    Task t = new Event(input, "placeholder");
+                    task_list.add(t);
+                }
+                else
+                {
+                    task_list.add(TaskLogic.add_task(input));
+                }
+            }
+
+        }
+
+        // close scanner
+        read_line.close();
+    }
+
+    public static void printIntro()
+    {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+
+        System.out.println(LINE);
+        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
+        System.out.println(LINE);
+    }
+
+    public static void exitDuke()
+    {
         // OUTRO TEXT
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(line);
+        System.out.println(LINE);
 
-        // Close scanner & Exit
-        read_line.close();
         System.exit(0);
     }
 }
