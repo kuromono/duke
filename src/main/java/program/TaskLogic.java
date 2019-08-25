@@ -56,13 +56,4 @@ public class TaskLogic {
 
         return t;
     }
-
-    public static void error_task() {
-        System.out.println(LINE);
-        System.out.println(" The system currently only supports the following formats:");
-        System.out.println("   todo <description>");
-        System.out.println("   deadline <description> /by <date>");
-        System.out.println("   event <description> /at <date>");
-        System.out.println(LINE);
-    }
 }
