@@ -1,6 +1,8 @@
 import program.*;
 import task.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,16 +10,23 @@ public class Duke {
 
     public static final String LINE = "____________________________________________________________";
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, IOException {
         // Print intro text
         printIntro();
 
+        // New file
+        String path = new File("data/duke.txt").getAbsolutePath();
+        File file = new File(path);
+
+        // Read file
+        ArrayList<Task> task_list = FileLogic.ReadFile(file, path);
+
         // main logic
-        input_parser();
+        input_parser(task_list);
     }
 
-    public static void input_parser() throws DukeException {
-        ArrayList<Task> task_list = new ArrayList<Task>();
+    public static void input_parser(ArrayList<Task> task_list) throws DukeException {
+        System.out.println(LINE);
 
         // INPUT LOOP
         Scanner read_line = new Scanner(System.in);
@@ -34,7 +43,7 @@ public class Duke {
                 } else if (tokenized_input[0].equals("done")) {
                     // Marks task as Done
                     if (tokenized_input.length == 1)
-                        throw new DukeException (" The value of <done> cannot be empty.");
+                        throw new DukeException ("The value of <done> cannot be empty.");
 
                     TaskLogic.done(task_list, Integer.parseInt(tokenized_input[1]));
                 } else {
@@ -42,18 +51,18 @@ public class Duke {
                     String desc;
                     if (tokenized_input[0].equals("todo")) {
                         if (input.strip().length() < 5)
-                            throw new DukeException (" The description of a <todo> cannot be empty.");
+                            throw new DukeException ("The description of a <todo> cannot be empty.");
 
                         TaskLogic.add_task(task_list, TaskLogic.make_task("todo", input.substring(5), ""));
                     } else if (tokenized_input[0].equals("deadline")) {
                         if (input.strip().length() < 9)
-                            throw new DukeException (" The description of a <deadline> cannot be empty.");
+                            throw new DukeException ("The description of a <deadline> cannot be empty.");
 
                         tokenized_input = input.substring(9).split(" /by ");
                         TaskLogic.add_task(task_list, TaskLogic.make_task("deadline", tokenized_input[0], tokenized_input[1]));
                     } else if (tokenized_input[0].equals("event")) {
                         if (input.strip().length() < 6)
-                            throw new DukeException (" The description of a <event> cannot be empty.");
+                            throw new DukeException ("The description of a <event> cannot be empty.");
 
                         tokenized_input = input.substring(6).split(" /at ");
                         TaskLogic.add_task(task_list, TaskLogic.make_task("event", tokenized_input[0], tokenized_input[1]));
@@ -63,10 +72,10 @@ public class Duke {
                         exitDuke();
                     } else {
                         throw new DukeException("\n"
-                                + " The system currently only supports the following formats:\n"
-                                + "   todo <description>\n"
-                                + "   deadline <description> /by <date>\n"
-                                + "   event <description> /at <date>");
+                                + "The system currently only supports the following formats:\n"
+                                + "  todo <description>\n"
+                                + "  deadline <description> /by <date>\n"
+                                + "  event <description> /at <date>");
                     }
                 }
             } catch (DukeException e) {

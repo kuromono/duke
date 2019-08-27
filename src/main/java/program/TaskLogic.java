@@ -15,7 +15,7 @@ public class TaskLogic {
             }
         } else {
             System.out.println(LINE);
-            System.out.println(" There is nothing in the list!");
+            System.out.println("There is nothing in the list!");
             System.out.println(LINE);
         }
     }
@@ -26,7 +26,7 @@ public class TaskLogic {
 
         task_list.get(index - 1).setDone();
         System.out.println(LINE);
-        System.out.println(" Nice! I've marked this task as done:");
+        System.out.println("Nice! I've marked this task as done:");
         System.out.println("  " + task_list.get(index - 1).toString());
         System.out.println(LINE);
     }
@@ -34,7 +34,7 @@ public class TaskLogic {
     public static void add_task(ArrayList<Task> task_list, Task t)
     {
         task_list.add(t);
-        System.out.println(" Now you have " + task_list.size() + " tasks in the list.");
+        System.out.println("Now you have " + task_list.size() + " tasks in the list.");
         System.out.println(LINE);
     }
 
@@ -51,7 +51,7 @@ public class TaskLogic {
         }
 
         System.out.println(LINE);
-        System.out.println(" Got it. I've added this task: ");
+        System.out.println("Got it. I've added this task: ");
         System.out.println("   " + t.toString());
 
         return t;
