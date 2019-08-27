@@ -2,9 +2,7 @@ package program;
 
 import task.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +30,7 @@ public class FileLogic {
         return t;
     }
 
-   public static ArrayList<Task> ReadFile(File file, String path) throws IOException {
+   public static ArrayList<Task> read_file(File file, String path) throws IOException, ClassNotFoundException {
 
        ArrayList<Task> task_list = new ArrayList<Task>();
 
@@ -40,9 +38,18 @@ public class FileLogic {
            System.out.println("Loading file from : " + path);
            Scanner read_file = new Scanner(file);
 
-           while (read_file.hasNextLine()) {
-               task_list.add(LineParser(read_file.nextLine()));
+
+           try {
+               FileInputStream file_input = new FileInputStream(file);
+               ObjectInputStream object_input = new ObjectInputStream(file_input);
+               task_list = (ArrayList<Task>) object_input.readObject();
+
+               file_input.close();
+               object_input.close();
+           } catch (IOException e) {
+               System.err.println("File is empty/corrupted, starting from fresh...");
            }
+
        } else {
            // Make directory & file if not exist
            file.getParentFile().mkdirs();
@@ -54,7 +61,13 @@ public class FileLogic {
        return task_list;
    }
 
-   public static void UpdateFile(File file, int index, String type, boolean done, String desc, String date) {
+   public static void update_file(File file, ArrayList<Task> task_list) throws IOException {
+       FileOutputStream file_output = new FileOutputStream(file);
+       ObjectOutputStream object_output = new ObjectOutputStream(file_output);
 
+        object_output.writeObject(task_list);
+
+        file_output.close();
+        object_output.close();
    }
 }

@@ -2,7 +2,9 @@ import program.*;
 import task.*;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +12,7 @@ public class Duke {
 
     public static final String LINE = "____________________________________________________________";
 
-    public static void main(String[] args) throws DukeException, IOException {
+    public static void main(String[] args) throws DukeException, IOException, ClassNotFoundException {
         // Print intro text
         printIntro();
 
@@ -19,13 +21,13 @@ public class Duke {
         File file = new File(path);
 
         // Read file
-        ArrayList<Task> task_list = FileLogic.ReadFile(file, path);
+        ArrayList<Task> task_list = FileLogic.read_file(file, path);
 
         // main logic
-        input_parser(task_list);
+        input_parser(task_list, file);
     }
 
-    public static void input_parser(ArrayList<Task> task_list) throws DukeException {
+    public static void input_parser(ArrayList<Task> task_list, File file) throws DukeException {
         System.out.println(LINE);
 
         // INPUT LOOP
@@ -46,6 +48,7 @@ public class Duke {
                         throw new DukeException ("The value of <done> cannot be empty.");
 
                     TaskLogic.done(task_list, Integer.parseInt(tokenized_input[1]));
+                    FileLogic.update_file(file, task_list);
                 } else {
                     // Adds new Tasks
                     String desc;
@@ -54,18 +57,21 @@ public class Duke {
                             throw new DukeException ("The description of a <todo> cannot be empty.");
 
                         TaskLogic.add_task(task_list, TaskLogic.make_task("todo", input.substring(5), ""));
+                        FileLogic.update_file(file, task_list);
                     } else if (tokenized_input[0].equals("deadline")) {
                         if (input.strip().length() < 9)
                             throw new DukeException ("The description of a <deadline> cannot be empty.");
 
                         tokenized_input = input.substring(9).split(" /by ");
                         TaskLogic.add_task(task_list, TaskLogic.make_task("deadline", tokenized_input[0], tokenized_input[1]));
+                        FileLogic.update_file(file, task_list);
                     } else if (tokenized_input[0].equals("event")) {
                         if (input.strip().length() < 6)
                             throw new DukeException ("The description of a <event> cannot be empty.");
 
                         tokenized_input = input.substring(6).split(" /at ");
                         TaskLogic.add_task(task_list, TaskLogic.make_task("event", tokenized_input[0], tokenized_input[1]));
+                        FileLogic.update_file(file, task_list);
                     } else if (input.equals("bye")) {
                         // Close scanner and exit programs
                         read_line.close();
@@ -78,7 +84,7 @@ public class Duke {
                                 + "  event <description> /at <date>");
                     }
                 }
-            } catch (DukeException e) {
+            } catch (DukeException | IOException e) {
                 System.err.println(e);
             }
 
