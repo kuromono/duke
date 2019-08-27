@@ -65,21 +65,39 @@ public class Duke {
                         TaskLogic.add_task(task_list, TaskLogic.make_task("todo", input.substring(5), ""));
                         FileLogic.update_file(file, task_list);
                     } else if (tokenized_input[0].equals("deadline")) {
-                        if (input.strip().length() < 9) {
+                        if (tokenized_input.length < 3) {
                             System.err.println("The description of a <deadline> cannot be empty.");
+                            System.err.println("Format: deadline <description> /by DD/MM/YYYY HHMM");
                             continue;
                         }
 
                         tokenized_input = input.substring(9).split(" /by ");
+                        if (tokenized_input.length < 2) {
+                            System.err.println("Incorrect format. Format should be: deadline <description> /by DD/MM/YYYY HHMM");
+                            continue;
+                        } else if (!TaskLogic.DateValidator(tokenized_input[1])) {
+                            System.err.println("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
+                            continue;
+                        }
+
                         TaskLogic.add_task(task_list, TaskLogic.make_task("deadline", tokenized_input[0], tokenized_input[1]));
                         FileLogic.update_file(file, task_list);
                     } else if (tokenized_input[0].equals("event")) {
-                        if (input.strip().length() < 6) {
+                        if (tokenized_input.length < 3) {
                             System.err.println("The description of a <event> cannot be empty.");
+                            System.err.println("Format: event <description> /at DD/MM/YYYY HHMM");
                             continue;
                         }
 
                         tokenized_input = input.substring(6).split(" /at ");
+                        if (tokenized_input.length < 2) {
+                            System.err.println("Incorrect format. Format should be: event <description> /at DD/MM/YYYY HHMM");
+                            continue;
+                        } else if (!TaskLogic.DateValidator(tokenized_input[1])) {
+                            System.err.println("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
+                            continue;
+                        }
+
                         TaskLogic.add_task(task_list, TaskLogic.make_task("event", tokenized_input[0], tokenized_input[1]));
                         FileLogic.update_file(file, task_list);
                     } else if (input.equals("reset")) { // Reset the list & delete file - for debug use
@@ -97,7 +115,7 @@ public class Duke {
                                 + "  event <description> /at <date>");
                     }
                 }
-            } catch (DukeException | IOException e) {
+            } catch (DukeException | IOException | ArrayIndexOutOfBoundsException e) {
                 System.err.println(e);
             }
 

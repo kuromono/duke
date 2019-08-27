@@ -2,6 +2,9 @@ package program;
 
 import task.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class TaskLogic {
@@ -43,6 +46,12 @@ public class TaskLogic {
     {
         Task t;
 
+        if (!type.equals("todo")) {
+            if (!DateValidator(date)) {
+                System.err.println("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
+            }
+        }
+
         if (type.equals("event")) {
             t = new Event(desc, date);
         } else if (type.equals("deadline")) {
@@ -63,5 +72,15 @@ public class TaskLogic {
         System.out.println("Everything has been cleared!");
         System.out.println(LINE);
         return new ArrayList<Task>();
+    }
+
+    public static boolean DateValidator(String date) {
+        try {
+            DateTimeFormatter date_format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            LocalDateTime.parse(date, date_format);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 }
