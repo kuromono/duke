@@ -20,15 +20,16 @@ public class TaskLogic {
         }
     }
 
-    public static void done(ArrayList<Task> task_list, int index) throws DukeException {
-        if (index < 0 || index > task_list.size()) // Set task list boundary
-            throw new DukeException("Value is out of bounds.");
-
-        task_list.get(index - 1).setDone();
-        System.out.println(LINE);
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + task_list.get(index - 1).toString());
-        System.out.println(LINE);
+    public static void done(ArrayList<Task> task_list, int index) {
+        if (task_list.size() == 0 || index < 0 || index > task_list.size()) { // Set task list boundary
+            System.err.println("Value is out of bounds.");
+        } else {
+            task_list.get(index - 1).setDone();
+            System.out.println(LINE);
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println("  " + task_list.get(index - 1).toString());
+            System.out.println(LINE);
+        }
     }
 
     public static void add_task(ArrayList<Task> task_list, Task t)
@@ -55,5 +56,12 @@ public class TaskLogic {
         System.out.println("   " + t.toString());
 
         return t;
+    }
+
+    public static ArrayList<Task> reset(ArrayList<Task> task_list) {
+        System.out.println(LINE);
+        System.out.println("Everything has been cleared!");
+        System.out.println(LINE);
+        return new ArrayList<Task>();
     }
 }

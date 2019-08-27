@@ -2,7 +2,13 @@ package program;
 
 import task.*;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,6 +60,7 @@ public class FileLogic {
            // Make directory & file if not exist
            file.getParentFile().mkdirs();
            FileWriter write_file = new FileWriter(path);
+           write_file.close();
 
            System.out.println("File not found. Making new file at : " + path);
        }
@@ -69,5 +76,13 @@ public class FileLogic {
 
         file_output.close();
         object_output.close();
+   }
+
+   public static void reset_file(File file) {
+        try {
+            FileWriter write_file = new FileWriter(file.getAbsoluteFile());
+        } catch (IOException e) {
+            System.err.println("Error in resetting the file.");
+        }
    }
 }
