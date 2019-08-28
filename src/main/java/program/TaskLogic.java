@@ -46,16 +46,10 @@ public class TaskLogic {
     {
         Task t;
 
-        if (!type.equals("todo")) {
-            if (!DateValidator(date)) {
-                System.err.println("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
-            }
-        }
-
         if (type.equals("event")) {
-            t = new Event(desc, date);
+            t = new Event(desc, DateMaker(date));
         } else if (type.equals("deadline")) {
-            t = new Deadline(desc, date);
+            t = new Deadline(desc, DateMaker(date));
         } else {
             t = new ToDo(desc);
         }
@@ -82,5 +76,10 @@ public class TaskLogic {
             return false;
         }
         return true;
+    }
+
+    public static LocalDateTime DateMaker (String date) {
+        DateTimeFormatter date_format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        return LocalDateTime.parse(date, date_format);
     }
 }
