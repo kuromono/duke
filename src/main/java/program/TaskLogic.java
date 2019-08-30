@@ -61,6 +61,28 @@ public class TaskLogic {
         return t;
     }
 
+    public static void find_task(ArrayList<Task> task_list, String query) {
+        int i = 1;
+        int search_hits = 0;
+
+        System.out.println(LINE);
+        System.out.println("Here are the matching tasks in your list:");
+
+        for (Task t : task_list) {
+            if (t.getDescription().contains(query)) {
+                System.out.println(i + "." + t.toString());
+                search_hits += 1;
+            }
+            i += 1;
+        }
+
+        if (search_hits == 0) {
+            System.err.println("There is no tasks containing the keyword : " + query);
+        } else {
+            System.out.println(LINE);
+        }
+    }
+
     public static ArrayList<Task> reset(ArrayList<Task> task_list) {
         System.out.println(LINE);
         System.out.println("Everything has been cleared!");

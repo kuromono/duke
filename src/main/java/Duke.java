@@ -53,6 +53,14 @@ public class Duke {
 
                     TaskLogic.done(task_list, Integer.parseInt(tokenized_input[1]));
                     FileLogic.update_file(file, task_list);
+                } else if (tokenized_input[0].equals("find")) {
+                    // Search task based on keyword
+                    if (tokenized_input.length == 1) {
+                        System.err.println("The value of <find> cannot be empty.");
+                        continue;
+                    }
+
+                    TaskLogic.find_task(task_list, tokenized_input[1]);
                 } else {
                     // Adds new Tasks
                     String desc;
