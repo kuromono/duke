@@ -24,7 +24,7 @@ public class TaskLogic {
     }
 
     public static void done(ArrayList<Task> task_list, int index) {
-        if (task_list.size() == 0 || index < 0 || index > task_list.size()) { // Set task list boundary
+        if (task_list.size() == 0 || index < 1 || index > task_list.size()) { // Set task list boundary
             System.err.println("Value is out of bounds.");
         } else {
             task_list.get(index - 1).setDone();
@@ -33,6 +33,20 @@ public class TaskLogic {
             System.out.println("  " + task_list.get(index - 1).toString());
             System.out.println(LINE);
         }
+    }
+
+    public static void delete(ArrayList<Task> task_list, int index) {
+        if (task_list.size() == 0 || index < 1 || index > task_list.size()) { // Set task list boundary
+            System.err.println("Value is out of bounds.");
+        } else {
+            System.out.println(LINE);
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(task_list.get(index - 1).toString());
+            System.out.println(LINE);
+
+            task_list.remove(index - 1);
+        }
+
     }
 
     public static void add_task(ArrayList<Task> task_list, Task t)
@@ -66,6 +80,15 @@ public class TaskLogic {
         System.out.println("Everything has been cleared!");
         System.out.println(LINE);
         return new ArrayList<Task>();
+    }
+
+    public static boolean IntValidator(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
     public static boolean DateValidator(String date) {
