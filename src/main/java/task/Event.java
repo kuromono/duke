@@ -13,6 +13,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (by: " + date.toLocalDate().toString() + " " + date.toLocalTime().toString() + ")";
+        return "[E]" + super.toString() + " (at: " + date.toLocalDate().toString() + " " + date.toLocalTime().toString() + ")";
     }
 }

@@ -47,11 +47,25 @@ public class Duke {
                 } else if (tokenized_input[0].equals("done")) {
                     // Marks task as Done
                     if (tokenized_input.length == 1) {
-                        System.err.println("The value of <done> cannot be empty.");
+                        System.err.println("The index of <done> cannot be empty.");
+                        continue;
+                    } else if (!TaskLogic.IntValidator(tokenized_input[1])) {
+                        System.err.println("The index of <done> is not a valid integer.");
                         continue;
                     }
 
                     TaskLogic.done(task_list, Integer.parseInt(tokenized_input[1]));
+                    FileLogic.update_file(file, task_list);
+                } else if (tokenized_input[0].equals("delete")) {
+                    if (tokenized_input.length == 1) {
+                        System.err.println("The index of <delete> cannot be empty.");
+                        continue;
+                    } else if (!TaskLogic.IntValidator(tokenized_input[1])) {
+                        System.err.println("The index of <delete> is not a valid integer.");
+                        continue;
+                    }
+
+                    TaskLogic.delete(task_list, Integer.parseInt(tokenized_input[1]));
                     FileLogic.update_file(file, task_list);
                 } else {
                     // Adds new Tasks
