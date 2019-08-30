@@ -134,7 +134,12 @@ public class Duke {
                                 + "The system currently only supports the following formats:\n"
                                 + "  todo <description>\n"
                                 + "  deadline <description> /by <date>\n"
-                                + "  event <description> /at <date>");
+                                + "  event <description> /at <date>\n"
+                                + "  list\n"
+                                + "  done <index>\n"
+                                + "  delete <index>\n"
+                                + "  find <keyword>\n"
+                                + "  reset");
                     }
                 }
             } catch (DukeException | IOException | ArrayIndexOutOfBoundsException e) {
