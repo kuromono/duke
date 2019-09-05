@@ -1,0 +1,27 @@
+reset
+list
+todo_wrong
+todo Hello World
+todo More World
+list
+done 4
+done 2
+event
+event Visit World /at 10/12/2019 1900
+event Error in Date /at 10/99/2999 1900
+event Error in Time /at 10/12/2099 9999
+event Visit Again /at 10/12/2020 0000
+list
+done 3
+done 4
+deadline /by wrong_format
+deadline wrong_format /by
+deadline Hello World Again /by 10/12/2019 1900
+deadline Error in Date /by 10/99/2999 2000
+deadline Error in Time /by 10/09/1999 9000
+deadline wrong_format /at 10/12/2018 1230
+todo Hello
+event Test again /at 10/12/2022 0000
+list
+done 5
+bye
