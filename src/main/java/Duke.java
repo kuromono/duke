@@ -25,7 +25,7 @@ public class Duke {
             // main logic
             input_parser(task_list, file);
         } catch (ClassNotFoundException | IOException e) {
-            System.err.println("Error occurred in reading file. Exception:\n" + e);
+            TaskLogic.printError("Error occurred in reading file.");
         }
     }
 
@@ -47,10 +47,10 @@ public class Duke {
                 } else if (tokenized_input[0].equals("done")) {
                     // Marks task as Done
                     if (tokenized_input.length == 1) {
-                        System.err.println("The index of <done> cannot be empty.");
+                        TaskLogic.printError("The index of <done> cannot be empty.");
                         continue;
                     } else if (!TaskLogic.IntValidator(tokenized_input[1])) {
-                        System.err.println("The index of <done> is not a valid integer.");
+                        TaskLogic.printError("The index of <done> is not a valid integer.");
                         continue;
                     }
 
@@ -58,10 +58,10 @@ public class Duke {
                     FileLogic.update_file(file, task_list);
                 } else if (tokenized_input[0].equals("delete")) {
                     if (tokenized_input.length == 1) {
-                        System.err.println("The index of <delete> cannot be empty.");
+                        TaskLogic.printError("The index of <delete> cannot be empty.");
                         continue;
                     } else if (!TaskLogic.IntValidator(tokenized_input[1])) {
-                        System.err.println("The index of <delete> is not a valid integer.");
+                        TaskLogic.printError("The index of <delete> is not a valid integer.");
                         continue;
                     }
 
@@ -70,7 +70,7 @@ public class Duke {
                 } else if (tokenized_input[0].equals("find")) {
                     // Search task based on keyword
                     if (tokenized_input.length == 1) {
-                        System.err.println("The value of <find> cannot be empty.");
+                        TaskLogic.printError("The value of <find> cannot be empty.");
                         continue;
                     }
 
@@ -80,7 +80,7 @@ public class Duke {
                     String desc;
                     if (tokenized_input[0].equals("todo")) {
                         if (input.strip().length() < 5) {
-                            System.err.println("The description of a <todo> cannot be empty.");
+                            TaskLogic.printError("The description of a <todo> cannot be empty.");
                             continue;
                         }
 
@@ -88,17 +88,17 @@ public class Duke {
                         FileLogic.update_file(file, task_list);
                     } else if (tokenized_input[0].equals("deadline")) {
                         if (tokenized_input.length < 3) {
-                            System.err.println("The description of a <deadline> cannot be empty.");
-                            System.err.println("Format: deadline <description> /by DD/MM/YYYY HHMM");
+                            TaskLogic.printError("The description of a <deadline> cannot be empty.");
+                            TaskLogic.printError("Format: deadline <description> /by DD/MM/YYYY HHMM");
                             continue;
                         }
 
                         tokenized_input = input.substring(9).split(" /by ");
                         if (tokenized_input.length < 2) {
-                            System.err.println("Incorrect format. Format should be: deadline <description> /by DD/MM/YYYY HHMM");
+                            TaskLogic.printError("Incorrect format. Format should be: deadline <description> /by DD/MM/YYYY HHMM");
                             continue;
                         } else if (!TaskLogic.DateValidator(tokenized_input[1])) {
-                            System.err.println("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
+                            TaskLogic.printError("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
                             continue;
                         }
 
@@ -106,17 +106,17 @@ public class Duke {
                         FileLogic.update_file(file, task_list);
                     } else if (tokenized_input[0].equals("event")) {
                         if (tokenized_input.length < 3) {
-                            System.err.println("The description of a <event> cannot be empty.");
-                            System.err.println("Format: event <description> /at DD/MM/YYYY HHMM");
+                            TaskLogic.printError("The description of a <event> cannot be empty.");
+                            TaskLogic.printError("Format: event <description> /at DD/MM/YYYY HHMM");
                             continue;
                         }
 
                         tokenized_input = input.substring(6).split(" /at ");
                         if (tokenized_input.length < 2) {
-                            System.err.println("Incorrect format. Format should be: event <description> /at DD/MM/YYYY HHMM");
+                            TaskLogic.printError("Incorrect format. Format should be: event <description> /at DD/MM/YYYY HHMM");
                             continue;
                         } else if (!TaskLogic.DateValidator(tokenized_input[1])) {
-                            System.err.println("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
+                            TaskLogic.printError("Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800");
                             continue;
                         }
 

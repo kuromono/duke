@@ -25,7 +25,7 @@ public class TaskLogic {
 
     public static void done(ArrayList<Task> task_list, int index) {
         if (task_list.size() == 0 || index < 1 || index > task_list.size()) { // Set task list boundary
-            System.err.println("Value is out of bounds.");
+            printError("Value is out of bounds.");
         } else {
             task_list.get(index - 1).setDone();
             System.out.println(LINE);
@@ -37,7 +37,7 @@ public class TaskLogic {
 
     public static void delete(ArrayList<Task> task_list, int index) {
         if (task_list.size() == 0 || index < 1 || index > task_list.size()) { // Set task list boundary
-            System.err.println("Value is out of bounds.");
+            printError("Value is out of bounds.");
         } else {
             System.out.println(LINE);
             System.out.println("Noted. I've removed this task:");
@@ -91,7 +91,7 @@ public class TaskLogic {
         }
 
         if (search_hits == 0) {
-            System.err.println("There is no tasks containing the keyword : " + query);
+            printError("There is no tasks containing the keyword : " + query);
         } else {
             System.out.println(LINE);
         }
@@ -126,5 +126,11 @@ public class TaskLogic {
     public static LocalDateTime DateMaker (String date) {
         DateTimeFormatter date_format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         return LocalDateTime.parse(date, date_format);
+    }
+
+    public static void printError(String err) {
+        // Able to change output type conveniently here
+        //System.out.println((char)27 + "[31m" + err);
+        System.out.println(err);
     }
 }

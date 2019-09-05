@@ -53,7 +53,7 @@ public class FileLogic {
                file_input.close();
                object_input.close();
            } catch (IOException e) {
-               System.err.println("File is empty/corrupted, starting from fresh...");
+               TaskLogic.printError("File is empty/corrupted, starting from fresh...");
            }
 
        } else {
@@ -82,7 +82,7 @@ public class FileLogic {
         try {
             FileWriter write_file = new FileWriter(file.getAbsoluteFile());
         } catch (IOException e) {
-            System.err.println("Error in resetting the file.");
+            TaskLogic.printError("Error in resetting the file.");
         }
    }
 }
