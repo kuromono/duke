@@ -20,22 +20,25 @@ public class Duke {
         String path = new File("data/duke.txt").getAbsolutePath();
         File file = new File(path);
 
+        Scanner read_line = new Scanner(System.in);
+
         try {
             // Read file
             ArrayList<Task> task_list = FileLogic.read_file(file, path);
 
             // main logic
-            input_parser(task_list, file);
+            input_parser(task_list, file, read_line);
         } catch (ClassNotFoundException | IOException e) {
             TaskLogic.printError("Error occurred in reading file.");
         }
+
+        exitDuke();
     }
 
-    public static void input_parser(ArrayList<Task> task_list, File file) {
+    public static void input_parser(ArrayList<Task> task_list, File file, Scanner read_line) {
         System.out.println(LINE);
 
         // INPUT LOOP
-        Scanner read_line = new Scanner(System.in);
         String input = "";
         while (!input.equals("bye")) {
             try {
@@ -130,7 +133,7 @@ public class Duke {
                     } else if (input.equals("bye")) {
                         // Close scanner and exit programs
                         read_line.close();
-                        exitDuke();
+                        return;
                     } else {
                         throw new DukeException("\n"
                                 + "The system currently only supports the following formats:\n"

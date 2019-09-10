@@ -17,3 +17,4 @@ bin/
 /text-ui-test/data/duke.txt
 /text-ui-test/ACTUAL.txt
 /data/duke.txt
+/src/test/data/duke.txt

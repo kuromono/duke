@@ -65,7 +65,7 @@ public class TaskLogic {
         } else if (type.equals("deadline")) {
             t = new Deadline(desc, DateMaker(date));
         } else {
-            t = new ToDo(desc);
+            t = new Todo(desc);
         }
 
         System.out.println(LINE);

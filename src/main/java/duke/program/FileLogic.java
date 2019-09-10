@@ -13,29 +13,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileLogic {
-    public static Task LineParser(String line) {
-        String[] tokenized_line = line.split(" | ");
-
-        Task t;
-
-        int done = Integer.parseInt(tokenized_line[1]);
-        String desc = tokenized_line[2];
-        String date = tokenized_line[3];
-
-        if (tokenized_line[0].equals("E")) { //Event
-            t = TaskLogic.make_task("event", desc, date);
-        } else if (tokenized_line[0].equals("D")) { //Deadline
-            t = TaskLogic.make_task("deadline", desc, date);
-        } else  { //ToDo
-            t = TaskLogic.make_task("todo", desc, "");
-        }
-
-        if (done != 0)
-            t.setDone();
-
-        return t;
-    }
-
    public static ArrayList<Task> read_file(File file, String path) throws IOException, ClassNotFoundException {
 
        ArrayList<Task> task_list = new ArrayList<Task>();
@@ -52,7 +29,7 @@ public class FileLogic {
 
                file_input.close();
                object_input.close();
-           } catch (IOException e) {
+           } catch (IOException | ClassNotFoundException | NoClassDefFoundError e) {
                TaskLogic.printError("File is empty/corrupted, starting from fresh...");
            }
 
