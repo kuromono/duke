@@ -12,5 +12,8 @@ src/main/resources/docs/
 .DS_Store
 *.iml
 bin/
+
+# Duke ignore files
 /text-ui-test/data/duke.txt
+/text-ui-test/ACTUAL.txt
 /data/duke.txt
