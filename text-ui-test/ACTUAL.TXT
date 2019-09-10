@@ -1,0 +1,95 @@
+Hello from
+ ____        _        
+|  _ \ _   _| | _____ 
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+
+____________________________________________________________
+Hello! I'm Duke
+What can I do for you?
+____________________________________________________________
+Loading file from : D:\SP Thing\NUS\CS2113T\duke\text-ui-test\data\duke.txt
+____________________________________________________________
+____________________________________________________________
+Everything has been cleared!
+____________________________________________________________
+____________________________________________________________
+There is nothing in the list!
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task: 
+   [T][?] Hello World
+Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task: 
+   [T][?] More World
+Now you have 2 tasks in the list.
+____________________________________________________________
+ 1.[T][?] Hello World
+ 2.[T][?] More World
+Value is out of bounds.
+____________________________________________________________
+Nice! I've marked this task as done:
+  [T][?] More World
+____________________________________________________________
+The description of a <event> cannot be empty.
+Format: event <description> /at DD/MM/YYYY HHMM
+____________________________________________________________
+Got it. I've added this task: 
+   [E][?] Visit World (at: 2019-12-10 19:00)
+Now you have 3 tasks in the list.
+____________________________________________________________
+Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800
+Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800
+____________________________________________________________
+Got it. I've added this task: 
+   [E][?] Visit Again (at: 2020-12-10 00:00)
+Now you have 4 tasks in the list.
+____________________________________________________________
+ 1.[T][?] Hello World
+ 2.[T][?] More World
+ 3.[E][?] Visit World (at: 2019-12-10 19:00)
+ 4.[E][?] Visit Again (at: 2020-12-10 00:00)
+____________________________________________________________
+Nice! I've marked this task as done:
+  [E][?] Visit World (at: 2019-12-10 19:00)
+____________________________________________________________
+____________________________________________________________
+Nice! I've marked this task as done:
+  [E][?] Visit Again (at: 2020-12-10 00:00)
+____________________________________________________________
+Incorrect format. Format should be: deadline <description> /by DD/MM/YYYY HHMM
+Incorrect format. Format should be: deadline <description> /by DD/MM/YYYY HHMM
+____________________________________________________________
+Got it. I've added this task: 
+   [D][?] Hello World Again (by: 2019-12-10 19:00)
+Now you have 5 tasks in the list.
+____________________________________________________________
+Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800
+Date format must be DD/MM/YYYY HHMM, E.g. 02/12/2019 1800
+Incorrect format. Format should be: deadline <description> /by DD/MM/YYYY HHMM
+____________________________________________________________
+Got it. I've added this task: 
+   [T][?] Hello
+Now you have 6 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task: 
+   [E][?] Test again (at: 2022-12-10 00:00)
+Now you have 7 tasks in the list.
+____________________________________________________________
+ 1.[T][?] Hello World
+ 2.[T][?] More World
+ 3.[E][?] Visit World (at: 2019-12-10 19:00)
+ 4.[E][?] Visit Again (at: 2020-12-10 00:00)
+ 5.[D][?] Hello World Again (by: 2019-12-10 19:00)
+ 6.[T][?] Hello
+ 7.[E][?] Test again (at: 2022-12-10 00:00)
+____________________________________________________________
+Nice! I've marked this task as done:
+  [D][?] Hello World Again (by: 2019-12-10 19:00)
+____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________

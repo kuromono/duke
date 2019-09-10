@@ -1,5 +1,7 @@
-import program.*;
-import task.*;
+package duke;
+
+import duke.program.*;
+import duke.task.*;
 
 import java.io.File;
 import java.io.IOException;
