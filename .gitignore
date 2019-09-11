@@ -16,5 +16,4 @@ bin/
 # Duke ignore files
 /text-ui-test/data/duke.txt
 /text-ui-test/ACTUAL.txt
-/src/test/data/
 /data/duke.txt
