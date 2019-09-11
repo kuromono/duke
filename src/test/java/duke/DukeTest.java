@@ -31,13 +31,11 @@ public class DukeTest {
         PrintStream sysout = System.out;
         System.setOut(ps);
 
+        // Read file
+        ArrayList<Task> task_list = new ArrayList<Task>();
 
-            // Read file
-            ArrayList<Task> task_list = new ArrayList<Task>();
-
-            // main logic
-            Parser.input_parser(task_list, file, read_line);
-
+        // main logic
+        Parser.input_parser(task_list, file, read_line);
 
         System.setOut(sysout);
         return out.toString();
