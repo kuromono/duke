@@ -11,6 +11,12 @@ public class Parser {
 
     public static final String LINE = "____________________________________________________________";
 
+    /**
+     * Method responsible for parsing input from the user and perform program tasks.
+     * @param task_list Task ArrayList containing values to perform operations on.
+     * @param file File object to write updates into.
+     * @param read_line Scanner object for reading input from.
+     */
     public static void input_parser(ArrayList<Task> task_list, File file, Scanner read_line) {
         System.out.println(LINE);
 

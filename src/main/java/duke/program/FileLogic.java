@@ -13,6 +13,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileLogic {
+
+    /**
+     * Reads a file from path that contains values to create a new Task ArrayList.
+     * @param file File object to be read from.
+     * @param path Location where the file is located.
+     * @return A new Task ArrayList containing the values read from the specified file.
+     * @throws IOException Thrown when error in input/output operation to the file.
+     * @throws ClassNotFoundException Thrown when error in converting data from file to a Task ArrayList.
+     */
    public static ArrayList<Task> read_file(File file, String path) throws IOException, ClassNotFoundException {
 
        ArrayList<Task> task_list = new ArrayList<Task>();
@@ -45,6 +54,12 @@ public class FileLogic {
        return task_list;
    }
 
+    /**
+     * Writes the specified file with the values of Task ArrayList.
+     * @param file File to be write into.
+     * @param task_list Task ArrayList containing the data to be write into the specified file.
+     * @throws IOException Thrown when error in input/output operation to the file.
+     */
    public static void update_file(File file, ArrayList<Task> task_list) throws IOException {
        FileOutputStream file_output = new FileOutputStream(file);
        ObjectOutputStream object_output = new ObjectOutputStream(file_output);
@@ -55,6 +70,10 @@ public class FileLogic {
         object_output.close();
    }
 
+    /**
+     * Resets specified file to a new/empty state.
+     * @param file File to be reset.
+     */
    public static void reset_file(File file) {
         try {
             FileWriter write_file = new FileWriter(file.getAbsoluteFile());

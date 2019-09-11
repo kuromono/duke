@@ -12,6 +12,10 @@ public class Duke {
 
     public static final String LINE = "____________________________________________________________";
 
+    /**
+     * Main method to initialize the program Duke.
+     * @param args Arguments passed to program, currently does nothing.
+     */
     public static void main(String[] args) {
         // Print intro text
         printIntro();
@@ -35,7 +39,9 @@ public class Duke {
         exitDuke();
     }
 
-
+    /**
+     * Prints introductory message on program launch.
+     */
     public static void printIntro() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -49,6 +55,9 @@ public class Duke {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints exiting message and exits the program.
+     */
     public static void exitDuke() {
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(LINE);
