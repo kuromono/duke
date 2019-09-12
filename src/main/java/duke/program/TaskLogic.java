@@ -106,7 +106,7 @@ public class TaskLogic {
      * @param task_list Task ArrayList to perform search on.
      * @param query Keyword of query to be searched against the ArrayList.
      */
-    public static void find_task(ArrayList<Task> task_list, String query) {
+    public static int find_task(ArrayList<Task> task_list, String query) {
         int i = 1;
         int search_hits = 0;
 
@@ -126,6 +126,7 @@ public class TaskLogic {
         } else {
             System.out.println(LINE);
         }
+        return search_hits;
     }
 
     /**
@@ -141,7 +142,7 @@ public class TaskLogic {
     }
 
     /**
-     * Validates if input string is a valid integer.
+     * Validates if input string is a valid positive integer.
      * @param input String containing a int to check if valid.
      * @return true or false depending if input string is valid or not.
      */

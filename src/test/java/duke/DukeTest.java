@@ -26,10 +26,8 @@ public class DukeTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         Scanner read_line = new Scanner(in);
 
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(out);
         PrintStream sysout = System.out;
-        System.setOut(ps);
+        ByteArrayOutputStream out = SampleData.outputRedirector();
 
         // Read file
         ArrayList<Task> task_list = new ArrayList<Task>();
